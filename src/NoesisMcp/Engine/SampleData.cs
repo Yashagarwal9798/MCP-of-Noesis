@@ -34,6 +34,7 @@ public static class SampleData
         var el = v.GetValue<JsonElement>();
         return el.ValueKind switch
         {
+            JsonValueKind.String when el.GetString() == "$command" => new SampleCommand(),
             JsonValueKind.String => el.GetString(),
             JsonValueKind.True => true,
             JsonValueKind.False => false,
@@ -74,6 +75,14 @@ public static class SampleData
             prop.SetSetMethod(set);
         }
         return tb.CreateType();
+    }
+
+    /// <summary>What "$command" in sample_data becomes: a real ICommand that does nothing.</summary>
+    public sealed class SampleCommand : System.Windows.Input.ICommand
+    {
+        public event EventHandler? CanExecuteChanged { add { } remove { } }
+        public bool CanExecute(object? parameter) => true;
+        public void Execute(object? parameter) { }
     }
 
     static string Sanitize(string key)

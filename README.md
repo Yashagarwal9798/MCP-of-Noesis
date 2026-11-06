@@ -26,7 +26,7 @@ write XAML → validate_xaml → fix "Line 2, Col 3: Unknown element type 'Buton
 
 Some details:
 
-- **`sample_data`** turns JSON into real CLR objects (classes emitted at runtime), so `{Binding Score}` and `ItemsSource="{Binding Items}"` show real values in the preview.
+- **`sample_data`** turns JSON into real CLR objects (classes emitted at runtime), so `{Binding Score}` and `ItemsSource="{Binding Items}"` show real values in the preview. The string `"$command"` becomes a real no-op `ICommand`, so `Command="{Binding PlayCommand}"` binds just as it does in the game.
 - **`time`** captures a frame partway through `Loaded` storyboards. Use 0 for the first frame of an intro animation.
 - Bad XAML is a normal tool result with `isError: true`, never a protocol error, so the agent can read it and fix it.
 

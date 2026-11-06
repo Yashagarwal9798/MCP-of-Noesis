@@ -53,7 +53,7 @@ public static partial class XamlDiagnostics
         if (message.StartsWith("Font not found", StringComparison.Ordinal))
             return "Use a font from the theme (default), or a system font family name such as Arial or Segoe UI.";
         if (message.Contains("Binding", StringComparison.Ordinal) && message.Contains("Command", StringComparison.Ordinal))
-            return "Commands can't come from sample_data JSON, so this warning is expected in previews.";
+            return "Pass the command in sample_data as \"Name\": \"$command\" (a no-op ICommand) so the preview matches the game.";
         if (message.Contains("Binding", StringComparison.Ordinal))
             return "Pass sample_data to render_xaml so bindings resolve in the preview.";
         return null;

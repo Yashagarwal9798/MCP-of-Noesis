@@ -33,7 +33,7 @@ public sealed class XamlTools(NoesisWorkerClient worker)
         [Description("Height in pixels (16 to 2160). Default 720.")] int height = 720,
         [Description("Animation time in seconds at which to capture the frame (0 to 60). Default 1.0. Use 0 for the first frame of an intro animation.")] double time = 1.0,
         [Description("Noesis theme for standard controls: DarkBlue (default), DarkAqua, DarkCrimson, DarkEmerald, DarkGreen, DarkLime, DarkOrange, DarkPurple, DarkRed, the Light* variants, or 'none'.")] string theme = "DarkBlue",
-        [Description("Optional JSON object used as the root DataContext, e.g. {\"Score\": 7, \"Lives\": 2, \"Items\": [{\"Name\": \"Sword\"}]}.")] string? sample_data = null,
+        [Description("Optional JSON object used as the root DataContext, e.g. {\"Score\": 7, \"Items\": [{\"Name\": \"Sword\"}], \"PlayCommand\": \"$command\"}. The string \"$command\" becomes a real no-op ICommand, so Command bindings behave as in the game.")] string? sample_data = null,
         [Description("Optional absolute path ending in .png. The image is also written there, e.g. to keep previews next to the XAML.")] string? save_to = null,
         CancellationToken ct = default)
     {
