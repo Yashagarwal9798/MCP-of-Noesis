@@ -119,6 +119,20 @@ public class EngineBehaviorTests(EngineFixture fx)
     }
 
     [Fact]
+    public void Offscreen_layers_do_not_clip_this_or_later_frames()
+    {
+        // Group Opacity makes Noesis render an offscreen layer first. That pass used to leave its
+        // scissor rect bound, clipping the main pass (and every later render) to one tile.
+        var group = $"<Grid {Ns} Background=\"Navy\"><Canvas Opacity=\"0.5\"><Ellipse Width=\"50\" Height=\"50\" Fill=\"White\"/></Canvas></Grid>";
+        var plain = $"<Grid {Ns} Background=\"#00FF00\"/>";
+        int corner = ((300 - 2) * 400 + (400 - 2)) * 4; // bottom-right pixel
+        var a = RenderRaw(group, 400, 300);
+        Assert.Equal(new byte[] { 128, 0, 0, 255 }, a[corner..(corner + 4)]); // navy, BGRA
+        var b = RenderRaw(plain, 400, 300);
+        Assert.Equal(new byte[] { 0, 255, 0, 255 }, b[corner..(corner + 4)]);
+    }
+
+    [Fact]
     public void Storyboard_time_changes_the_frame()
     {
         var (xaml, _) = Corpus.Load("valid", "storyboard-scale-in.xaml");

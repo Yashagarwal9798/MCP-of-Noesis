@@ -46,9 +46,10 @@ public sealed class NoesisEngine : IDisposable
         GUI.Init();
         Version = GUI.GetBuildVersion();
 
-        // NoesisApp 4.0.1's Theme reports Namespace "NoesisApp" but its fonts are embedded as
-        // "Theme.Fonts.*", so the theme's own font provider can't find "Fonts/#PT Root UI".
-        // A fallback provider with an empty namespace resolves "Theme/Fonts/..." correctly.
+        // Outside NoesisApp.Application (GUI.Init + SetThemeProviders + LoadApplicationResources),
+        // Noesis 4.0.1 logs "Font not found 'Fonts/#PT Root UI'" for the theme. A fallback provider
+        // with an empty namespace resolves "Theme/Fonts/..." from the theme assembly. (Inside
+        // Application the theme fonts load fine.)
         var themeAsm = typeof(NoesisApp.Theme).Assembly;
         NoesisApp.Application.SetThemeProviders(null, new NoesisApp.EmbeddedFontProvider(themeAsm, ""), null);
         SetTheme("DarkBlue");

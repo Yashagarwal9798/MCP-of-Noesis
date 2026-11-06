@@ -107,6 +107,9 @@ sealed class D3DOffscreen : IDisposable
         view.Renderer.RenderOffscreen();
         _ctx.OutputMerger.SetRenderTargets(_dsv, _rtv);
         _ctx.Rasterizer.SetViewport(0, 0, w, h);
+        // RenderOffscreen leaves the scissor rect of its last tile bound; without this reset the main
+        // pass is clipped to that tile whenever the scene used an offscreen layer (e.g. group Opacity).
+        _ctx.Rasterizer.SetScissorRectangle(0, 0, w, h);
         _ctx.ClearRenderTargetView(_rtv, new RawColor4(0, 0, 0, 0));
         _ctx.ClearDepthStencilView(_dsv, DepthStencilClearFlags.Depth | DepthStencilClearFlags.Stencil, 1f, 0);
         view.Renderer.Render(false, false);

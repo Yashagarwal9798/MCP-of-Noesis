@@ -93,7 +93,7 @@ dotnet build src/NoesisMcp -c Release && python tests/smoke.py   # JSON-RPC over
 - XAML ≤ 200 KB, render size ≤ 3840×2160.
 - `x:Class` and custom controls need the game's own types, so previews should leave them out.
 - `Window` roots are previewed as their content, because a Window needs a native display.
-- Found while building this: in NoesisApp 4.0.1, `Theme.Namespace` is `"NoesisApp"` but the theme fonts are embedded as `Theme.Fonts.*`, so `Application.SetThemeProviders()` can't find `Fonts/#PT Root UI`. The server works around it with a fallback `EmbeddedFontProvider(themeAssembly, "")`.
+- Found while building this: when the theme is used outside `NoesisApp.Application` (`GUI.Init` + `Application.SetThemeProviders()` + `GUI.LoadApplicationResources(...)`), Noesis 4.0.1 logs `Font not found 'Fonts/#PT Root UI'` and falls back to Arial. Inside `Application` the fonts load fine. The server adds a fallback `EmbeddedFontProvider(themeAssembly, "")`, which fixes it.
 
 ## Licensing
 
