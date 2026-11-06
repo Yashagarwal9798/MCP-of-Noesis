@@ -1,0 +1,4 @@
+<!-- expect: Default namespace not declared -->
+<Grid>
+  <Button/>
+</Grid>

@@ -1,0 +1,4 @@
+<!-- expect: Line 3, Col 3: Unknown element type 'Buton' -->
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Buton Content="Play"/>
+</Grid>

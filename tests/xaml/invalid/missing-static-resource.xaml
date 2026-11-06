@@ -1,0 +1,4 @@
+<!-- expect: StaticResource 'AccentBrush' not found -->
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextBlock Text="Hi" Foreground="{StaticResource AccentBrush}"/>
+</Grid>

@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/NoesisMcp/NoesisMcp.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NoesisMcp.Tests/NoesisMcp.Tests.csproj" />
+  </Folder>
+</Solution>

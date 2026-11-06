@@ -1,0 +1,4 @@
+<!-- expect: Unknown element type 'Viewport3D' -->
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Viewport3D/>
+</Grid>

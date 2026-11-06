@@ -1,0 +1,28 @@
+<!-- expect: OK -->
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="#14182A">
+  <Grid.Resources>
+    <Style x:Key="MenuButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+      <Setter Property="Width" Value="220"/>
+      <Setter Property="Margin" Value="0,8"/>
+      <Style.Triggers>
+        <Trigger Property="IsMouseOver" Value="True">
+          <Setter Property="Opacity" Value="0.85"/>
+        </Trigger>
+      </Style.Triggers>
+    </Style>
+  </Grid.Resources>
+  <Border Width="460" Padding="32" CornerRadius="12" Background="#232A45" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <StackPanel>
+      <TextBlock Text="Settings" FontSize="40" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,24"/>
+      <TextBlock Text="Volume" Foreground="#B8C0E0"/>
+      <Slider Minimum="0" Maximum="100" Value="70" Margin="0,4,0,16"/>
+      <CheckBox Content="Fullscreen" IsChecked="True" Margin="0,0,0,16"/>
+      <ComboBox SelectedIndex="1" Margin="0,0,0,24">
+        <ComboBoxItem Content="Easy"/>
+        <ComboBoxItem Content="Normal"/>
+        <ComboBoxItem Content="Hard"/>
+      </ComboBox>
+      <Button Content="Back" Style="{StaticResource MenuButton}"/>
+    </StackPanel>
+  </Border>
+</Grid>
